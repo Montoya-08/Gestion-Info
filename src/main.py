@@ -20,9 +20,13 @@ except ValueError: # TypeError, IndexError, ValueError
     print("Error: Ingrese un número válido")    
 """
 
-from service import crear_registro, listar_registros
+import service
+from file import load_data, save_data
 
 def main():
+    data = load_data()
+    service.inicializar_datos(data)
+
     while True:
         print("\n===== MENÚ =====")
         print("1. Crear registro")
@@ -37,14 +41,18 @@ def main():
                 nombre = input("Ingrese nombre: ")
                 correo = input("Ingrese correo: ")
 
-                print(crear_registro(id, nombre, correo))
+                resultado = service.crear_registro(id, nombre, correo)
+                print(resultado)
+
+                if "Registro creado" in resultado:
+                    save_data(service.registros) 
 
             except ValueError:
                 print("Error: ID inválido")
 
         elif opcion == "2":
             print("\nRegistros:")
-            print(listar_registros())
+            service.listar_registros()
 
         elif opcion == "3":
             print("Saliendo...")
