@@ -1,4 +1,6 @@
 from validate import validar_id, validar_correo
+from colorama import Fore, init
+init(autoreset=True)
 
 registros = []
 ids = set()
@@ -22,14 +24,14 @@ def new_register(id, nombre, correo):
         registros.append(registro)
         ids.add(id)
 
-        return "Registro creado"
+        return Fore.GREEN + "Registro creado"
 
     except ValueError as e:
         return f"Error: {e}"
 
 def list_records():
     if not registros:
-        print("No hay registros")
+        print(Fore.RED + "No hay registros")
         return
 
     for r in registros:
@@ -42,7 +44,7 @@ def search_record(id):
     resultado = [r for r in registros if r["id"] == id]
 
     if not resultado:
-        return "Error: El ID no existe"
+        return Fore.RED + "Error: El ID no existe"
 
     return resultado[0]
 
@@ -58,9 +60,9 @@ def update_record(id, nombre, correo):
                 validar_correo(correo)
                 r["correo"] = correo
 
-            return "Registro actualizado"
+            return Fore.GREEN + "Registro actualizado"
 
-    return "Error: ID no existe"
+    return Fore.RED + "Error: ID no existe"
 
 def delete_record(id):
     global registros
@@ -69,9 +71,9 @@ def delete_record(id):
         if r["id"] == id:
             registros.remove(r)
             ids.remove(id)
-            return "Registro eliminado"
+            return Fore.GREEN + "Registro eliminado"
 
-    return "Error: ID no existe"
+    return Fore.RED + "Error: ID no existe"
 
 def sort_by_name():
     return sorted(registros, key=lambda r: r["nombre"])

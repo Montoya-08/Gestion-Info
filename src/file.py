@@ -1,3 +1,5 @@
+from colorama import Fore, init
+init(autoreset=True)
 import json
 import os
 
@@ -12,15 +14,15 @@ def load_data():
             return json.load(archivo)
         
     except FileNotFoundError:
-        print("Error: Archivo no encontrado")
+        print(Fore.RED + "Error: Archivo no encontrado")
         return []
 
     except json.JSONDecodeError:
-        print("Error: El archivo está dañado")
+        print(Fore.RED + "Error: El archivo está dañado")
         return []
 
     except Exception as e:
-        print(f"Error inesperado: {e}")
+        print(Fore.RED + f"Error inesperado: {e}")
         return []
 
 
@@ -28,7 +30,7 @@ def save_data(data):
     try:
         with open(RUTA, "w") as archivo:
             json.dump(data, archivo, indent=4)
-        print("Datos guardados correctamente")
+        print(Fore.GREEN + "Datos guardados correctamente")
 
     except Exception as e:
-        print(f"Error al guardar: {e}")
+        print(Fore.RED + f"Error al guardar: {e}")
