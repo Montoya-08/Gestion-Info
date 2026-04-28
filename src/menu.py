@@ -11,7 +11,8 @@ def mostrar_menu():
     print("3. Buscar registro")
     print("4. Actualizar registro")
     print("5. Eliminar registro")
-    print("6. Salir")
+    print("6. Exportar a CSV")
+    print("7. Salir")
 
 
 def ejecutar_menu():
@@ -65,6 +66,10 @@ def ejecutar_menu():
                     save_data(service.registros)
 
             elif opcion == 6:
+                from integration import exportar
+                exportar(service.registros)
+
+            elif opcion == 7:
                 print(Fore.GREEN + "Saliendo...")
                 break
 

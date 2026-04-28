@@ -77,3 +77,14 @@ def delete_record(id):
 
 def sort_by_name():
     return sorted(registros, key=lambda r: r["nombre"])
+
+def new_register_dinamic(**kwargs):
+    try:
+        id = kwargs.get("id")
+        nombre = kwargs.get("nombre")
+        correo = kwargs.get("correo")
+
+        return new_register(id, nombre, correo)
+
+    except Exception as e:
+        return f"Error: {e}"
