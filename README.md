@@ -29,3 +29,17 @@ python src/main.py
 ## Notas
 - Los datos se guardan en `data/records.json`
 - El reporte se genera en `data/reporte.csv`
+
+## Módulo 6
+## Ejecución de pruebas
+
+- Antes de ejecutar las pruebas, asegúrate de tener instalada la dependencia `pytest`: pip install pytest
+- Luego ejecuta: python -m pytest tests/
+
+### Resultado esperado
+
+collected X items
+...
+X passed
+
+Esto indica que todas las pruebas se ejecutaron correctamente.
